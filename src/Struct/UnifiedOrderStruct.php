@@ -9,7 +9,7 @@
 namespace Service\Struct;
 
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 use Service\Config\WxConfig;
 use Service\Tools\Tool;
 
@@ -35,7 +35,7 @@ class UnifiedOrderStruct extends BStruct  implements IStruct
     /**
      * @param mixed $openid
      */
-    public function setOpenid($openid)
+    public function SetOpenid($openid)
     {
         $this->openid = $openid;
     }
@@ -89,7 +89,7 @@ class UnifiedOrderStruct extends BStruct  implements IStruct
             'trade_type' => 'JSAPI',
             'spbill_create_ip' => '14.23.150.211'
         ];
-        $this->MergeOptions($Options,['sub_appid','sub_openid']);
+        $this->MergeOptions($Options,['sub_appid','sub_openid','openid']);
         return $Options;
     }
 }
