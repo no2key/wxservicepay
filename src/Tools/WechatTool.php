@@ -12,6 +12,7 @@ namespace Service\Tools;
 use InvalidArgumentException;
 use Service\Struct\BStruct;
 use Service\Config\WxConfig;
+use Service\Struct\JsPayStruct;
 use Service\Tools\Xml;
 class WechatTool
 {
@@ -45,5 +46,20 @@ class WechatTool
         $PostStr = $Xml->ArrayToXml($Parasm);
         $PostStr = Tool::Trimall($PostStr);
         return $PostStr;
+    }
+
+    static public function GetJsPayParams($OrderInfo){
+        if(!array_key_exists("appid", $OrderInfo)
+            || !array_key_exists("prepay_id", $OrderInfo)
+            || $OrderInfo['prepay_id'] == "")
+        {
+            throw new InvalidArgumentException("统一下单参数返回错误");
+        }
+        $JsStruct = new JsPayStruct();
+        $JsStruct->setPackge('prepay_id='.$OrderInfo['prepay_id']);
+        $Params = $JsStruct->GetParams();
+        $Sign = WechatTool::Sign($Params,WxConfig::GetInstance()->getKey());
+        $Params['paySign'] = $Sign;
+        return $Params;
     }
 }

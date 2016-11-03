@@ -10,26 +10,29 @@ use Service\Order;
 use Service\Struct\UnifiedOrderStruct;
 class OrderTest extends PHPUnit_Framework_TestCase
 {
+
+
+
     public function testUnifiedOrder(){
-        \Service\Config\WxConfig::GetInstance()->setAppId('xxx');
-        \Service\Config\WxConfig::GetInstance()->setMchId('xxxxxxxx');
-        \Service\Config\WxConfig::GetInstance()->setKey('xxxxxxxx');
+        \Service\Config\WxConfig::GetInstance()->setAppId('xx');
+        \Service\Config\WxConfig::GetInstance()->setMchId('xx');
+        \Service\Config\WxConfig::GetInstance()->setKey('xx');
         $Order = new Order();
         $OrderStruct = new UnifiedOrderStruct();
         $OrderStruct->SetTotalfee(1);
-        $OrderStruct->SetSubmchid('1401471002');
+        $OrderStruct->SetSubmchid('xx');
         $OrderStruct->SetBody('PayTest');
         $OrderStruct->SetNotifyurl('http://www.baidu.com');
         $OrderStruct->SetOuttradeno('qqqqqqqqq');
-        $OrderStruct->SetSubappid('wxafc75d81282df574');
+        $OrderStruct->SetSubappid('wx86e8169ef52092ee');
         $OrderStruct->SetSubopenid('o1AQjwr9kri_klTn5upgI7p23XYQ');
         $Response = $Order->UnifiedOrder($OrderStruct);
+        var_dump($Response);
         $this->assertArrayHasKey('return_code',$Response);
     }
 
     public function testQueryOrder(){
         $Struct = new \Service\Struct\QueryOrderStruct();
-        $Struct->setNonceStr(\Service\Tools\Tool::RandStr(32));
         $Struct->setOutTradeNo(\Service\Tools\Tool::RandStr(32));
         $Struct->setSubMchId('1401471002');
         $Struct->setTransactionId('qweqweasd');
