@@ -1,5 +1,5 @@
 # wxservicepay
-Wx ServicePay library
+Wx ServicePay library (微信支付服务商版)
 ###安装方式
 ```php
 composer require mztli/wspp
