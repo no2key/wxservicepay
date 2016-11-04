@@ -14,14 +14,14 @@ use Service\Tools\Tool;
 
 class JsPayStruct extends BStruct implements IStruct
 {
-    protected $packge;
+    protected $package;
 
     /**
      * @param mixed $packge
      */
-    public function setPackge($packge)
+    public function setPackge($package)
     {
-        $this->packge = $packge;
+        $this->package = $package;
     }
 
 
